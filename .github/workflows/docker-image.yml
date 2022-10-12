@@ -14,16 +14,14 @@ jobs:
     - name: change Directory
       run: cd 03-app-dotnet
     - name: Build the Docker image
-      run: cd 03-app-dotnet && docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      
-  login:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Docker Login
-      run: docker login -u fallewi -p Fallewi1O.
+      run: | 
+        cd 03-app-dotnet && docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        docker images
       
   push:
     runs-on: ubuntu-latest
     steps:
-    - name: Docker push
-      run: docker push my-image-name:$(date +%s)
+    - name: Docker login & push
+      run: |
+        docker login -u fallewi -p Fallewi1O.
+        docker push my-image-name:$(date +%s)
