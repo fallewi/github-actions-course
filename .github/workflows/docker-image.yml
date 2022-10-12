@@ -17,4 +17,4 @@ jobs:
     - name: change Directory
       run: cd 03-app-dotnet
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: cd 03-app-dotnet && docker build . --file Dockerfile --tag my-image-name:$(date +%s)
